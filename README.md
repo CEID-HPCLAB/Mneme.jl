@@ -103,7 +103,8 @@ Mneme.jl/
 │
 ├── src/                  # Core implementation of Mneme.jl
 │
-└── example.jl            # End-to-end example demonstrating Mneme.jl operators
+├── example.jl            # End-to-end example demonstrating Mneme.jl operators
+└── run.sh                # Script for running the example
 ```
 
 ## Planned Features
