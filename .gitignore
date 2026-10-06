@@ -1,0 +1,5 @@
+.Cond*
+*.py
+venv
+Manifest*
+torcjulia
