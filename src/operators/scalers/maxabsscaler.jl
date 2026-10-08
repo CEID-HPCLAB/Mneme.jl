@@ -85,14 +85,6 @@ function _reduce_maxabs(stats::AbstractVector{<:Tuple{AbstractVector{<:Number}, 
 
 end
 
-function transform(scaler::MaxAbsScaler, X) 
-    warnings = pyimport("warnings")
-    warnings.filterwarnings("ignore", message = "X does not have valid feature names")
-
-    scaler.scaler.transform(np.array(X[:, sort(scaler.feature_idxs)]))
-    
-end
-
 function print_stats(scaler::MaxAbsScaler)
     println("scale_: $(scaler.scaler.scale_)\
       \nn_features_in_: $(scaler.scaler.n_features_in_)\

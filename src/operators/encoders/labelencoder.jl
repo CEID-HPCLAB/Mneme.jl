@@ -81,14 +81,6 @@ function _reduce_le(stats)::Py
 
 end
 
-function transform(encoder::LabelEncoder, X) 
-    warnings = pyimport("warnings")
-    warnings.filterwarnings("ignore", message = "X does not have valid feature names")
-
-    encoder.encoder.transform(np.asarray(X[:, encoder.feature_idxs]).ravel())
-
-end
-
 function print_stats(encoder::LabelEncoder)
     println("classes_: $(encoder.encoder.classes_)")
     

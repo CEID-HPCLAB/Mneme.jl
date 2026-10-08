@@ -140,15 +140,6 @@ function _reduce_ohe(stats)::Tuple{Py, Dict{Int, Int}}
     
 end
 
-function transform(encoder::OneHotEncoder, X)
-    warnings = pyimport("warnings")
-    warnings.filterwarnings("ignore", message = "X does not have valid feature names")
-
-    # if sparse output is true, Y is always a scipy.sparse._csr.csr_matrix (line 1080 -> /preprocessing/_encoders.py)
-    encoder.encoder.transform(np.array(X[:, sort(encoder.feature_idxs)]))
-
-end
-
 function _get_cat_idx(drop_cat::Py, categories::Py)::Int
     pyconvert(Int, np.where(categories .== drop_cat)[0][0])
 
@@ -185,18 +176,6 @@ function _set_internal_onehot_state!(encoder::Py)
     encoder._infrequent_indices = pydict()
 
     encoder._n_features_outs = pylist([length(cat) - (drop_idx[i] !== nothing ? 1 : 0) for (i, cat) in enumerate(encoder.categories_)])
-    
-end
-
-function to_JuliaCSR(X::Py)
-    dtype = pyis(np.issubdtype(X.data.dtype, np.floating),  pybuiltins.True) ?
-            (pyis(X.data.dtype, np.float32) ? Float32 : Float64) : Int
-    data    = pyconvert(Vector{dtype}, X.data)
-    indices = pyconvert(Vector{Int}, X.indices) .+ 1  # +1 for 1-based indexing
-    indptr  = pyconvert(Vector{Int}, X.indptr) .+ 1   # +1 for 1-based indexing
-    m, n   = pyconvert(Tuple{Int, Int}, X.shape)
-
-    sparsecsr(indptr[1:end-1], indices, data, m, n)
     
 end
 

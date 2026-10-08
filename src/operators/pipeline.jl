@@ -158,19 +158,6 @@ function _process_chunk(disp::OpDisp, X::DataFrame, feature_idxs)
     [unique(@view X[:, i]) for i in sort(feature_idxs)]
 end
 
-function transform(pipeline::Pipeline, X)
-    X_transformed = np.array(X)
-
-    for op in pipeline.operators
-        _trans_X = transform(op, X)
-        py_target_idxs = np.array([i-1 for i in sort(op.feature_idxs)])
-        X_transformed[pyslice(nothing), py_target_idxs] =  _trans_X
-    end
-    
-    X_transformed
-
-end
-
 function _set_attributes(op, stats; features = nothing, feature_idxs = nothing)
     if op isa StandardScaler
         fitted_stats = _reduce_std(stats)

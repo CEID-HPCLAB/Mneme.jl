@@ -134,14 +134,6 @@ function _reduce_ord(stats::Vector{<:AbstractVector})::Tuple{Vector{Py}, Dict{In
 
 end
 
-function transform(encoder::OrdinalEncoder, X) 
-    warnings = pyimport("warnings")
-    warnings.filterwarnings("ignore", message = "X does not have valid feature names")
-
-    encoder.encoder.transform(np.array(X[:, sort(encoder.feature_idxs)]))
-
-end
-
 function print_stats(encoder::OrdinalEncoder)
     println("categories_: $(encoder.encoder.categories_)\
       \nn_features_in_: $(encoder.encoder.n_features_in_)\

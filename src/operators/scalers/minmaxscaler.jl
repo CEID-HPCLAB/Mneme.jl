@@ -92,14 +92,6 @@ function _reduce_mm(stats::AbstractVector{<:Tuple{AbstractVector{<:Number}, Abst
     
 end
 
-function transform(scaler::MinMaxScaler, X) 
-    warnings = pyimport("warnings")
-    warnings.filterwarnings("ignore", message = "X does not have valid feature names")
-
-    scaler.scaler.transform(np.array(X[:, sort(scaler.feature_idxs)]))
-    
-end
-
 function print_stats(scaler::MinMaxScaler)
     println("min_: $(scaler.scaler.min_)\nscale_: $(scaler.scaler.scale_)\
             \ndata_min_: $(scaler.scaler.data_min_)\ndata_max_: $(scaler.scaler.data_max_)\ndata_range_: $(scaler.scaler.data_range_)\

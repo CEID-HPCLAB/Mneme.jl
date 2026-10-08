@@ -26,6 +26,6 @@ export BlockReader
 export Pipeline
 export MinMaxScaler, MaxAbsScaler, StandardScaler
 export OrdinalEncoder, OneHotEncoder, LabelEncoder
-export fit, transform, print_stats, to_JuliaCSR, save_offsets
+export fit, print_stats, save_offsets
 
 end
