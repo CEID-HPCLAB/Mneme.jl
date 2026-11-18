@@ -2,11 +2,11 @@
  [![GitHub release](https://img.shields.io/github/v/release/CEID-HPCLAB/Mneme.jl?include_prereleases&color=%238FD9FB)](https://github.com/CEID-HPCLAB/Mneme.jl/releases)
 [![License](https://img.shields.io/badge/License-Apache--2.0-FFDEAD)](https://www.apache.org/licenses/LICENSE-2.0)  <br>
 [![Julia](https://img.shields.io/badge/Julia-1.12-purple?logo=julia&logoColor=white)](https://julialang.org)
+![Torcalia](https://img.shields.io/github/v/release/CEID-HPCLAB/Torcalia.jl?label=Torcalia&color=C94F00&style=flat&logo=dna&logoColor=white)
 ![HPC](https://img.shields.io/badge/HPC-228B22?style=flat&logo=dna&logoColor=white)
 ![Data Preprocessing](https://img.shields.io/badge/Data%20Preprocessing-001594?style=flat&logo=dna&logoColor=white)
-![torcjulia](https://img.shields.io/badge/torcjulia-C94F00?style=flat&logo=dna&logoColor=white)
 
-**Mneme.jl** is a high-level parallel preprocessing framework for large-scale tabular data. Built on top of [torcjulia](https://github.com/CEID-HPCLAB/torcjulia), Mneme.jl employs an MPI-based hybrid parallelism scheme inspired by the MapReduce paradigm, which combines MPI multiprocessing and Julia-native multithreading to efficiently support out-of-core preprocessing of tabular datasets on multi-node systems (clusters).
+**Mneme.jl** is a high-level parallel preprocessing framework for large-scale tabular data. Built on top of [Torcalia](https://github.com/CEID-HPCLAB/Torcalia.jl), Mneme.jl employs an MPI-based hybrid parallelism scheme inspired by the MapReduce paradigm, which combines MPI multiprocessing and Julia-native multithreading to efficiently support out-of-core preprocessing of tabular datasets on multi-node systems (clusters).
 
 Mneme.jl can be considered as the Julia implementation of the [Mneme](https://github.com/CEID-HPCLAB/Mneme) Python library. The project is under active development, and some features of the original Python library are not yet supported.  
 
@@ -29,19 +29,19 @@ git clone https://github.com/CEID-HPCLAB/Mneme.jl.git
 cd Mneme.jl
 ```
 
-`Mneme.jl` is built on top of `torcjulia`. Therefore, make sure that the [torcjulia](https://github.com/CEID-HPCLAB/torcjulia) repository is also cloned before proceeding:
+`Mneme.jl` is built on top of `Torcalia`. Therefore, make sure that the [Torcalia](https://github.com/CEID-HPCLAB/Torcalia.jl) repository is also cloned before proceeding:
 ```bash
-git clone https://github.com/CEID-HPCLAB/torcjulia.git
+git clone https://github.com/CEID-HPCLAB/Torcalia.jl.git
 ```
 
 Now, dependencies of `Mneme.jl` can be installed using the Julia package manager. Enter the Pkg REPL mode by typing "]" in the Julia `REPL` and then run:
 ```julia
-pkg> activate ./torcjulia/torcjulia
+pkg> activate ./Torcalia.jl/Torcalia
 pkg> instantiate
 pkg> precompile
 
 pkg> activate .
-pkg> develop ./torcjulia/torcjulia
+pkg> develop ./Torcalia.jl/Torcalia
 pkg> instantiate
 ```
 
@@ -73,7 +73,7 @@ Next, a `StandardScaler` is instantiated and fitted to the specified 700 input f
 By instantiating the corresponding operator object, the same procedure can be used to fit any standalone operator listed in the table above.
 
 ```julia
-using torcjulia
+using Torcalia
 
 include(joinpath(@__DIR__, "src", "mneme.jl"))
 import .Mneme
@@ -91,7 +91,7 @@ function main()
     Mneme.fit(standard_scaler, reader)
 end
 
-torcjulia.init(main)
+Torcalia.init(main)
 ```
 
 ## File Structure
@@ -116,6 +116,4 @@ Mneme.jl/
 
 ## Contact
 
-For questions, bug reports, or contributions, please open an issue or contact:
-
-- Argiris Sofotasios — a.sofotasios@ac.upatras.gr
+For questions, bug reports, or other inquiries, please open a [GitHub issue](https://github.com/CEID-HPCLAB/Mneme.jl/issues) or contact Argiris Sofotasios at [a.sofotasios@ac.upatras.gr](mailto:a.sofotasios@ac.upatras.gr).   

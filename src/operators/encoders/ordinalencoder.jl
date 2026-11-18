@@ -58,7 +58,7 @@ function fit(encoder::OrdinalEncoder, reader::BlockReader)
     offsets_bounds = [(offsets[i], offsets[i+1]) for i in 1:length(offsets)-1]
     push!(offsets_bounds, (offsets[end], -1))
     
-    _partial_res = torcjulia.map(
+    _partial_res = Torcalia.map(
         _partial_fit_ord,
         offsets_bounds;
         chunksize = 1,

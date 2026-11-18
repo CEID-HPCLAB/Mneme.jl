@@ -1,4 +1,4 @@
-using torcjulia
+using Torcalia
 
 include(joinpath(@__DIR__, "src", "mneme.jl"))
 import .Mneme
@@ -50,4 +50,4 @@ function main()
     Mneme.print_stats(pipeline)
 end
 
-torcjulia.init(main)
+Torcalia.init(main)

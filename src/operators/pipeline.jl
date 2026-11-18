@@ -30,7 +30,7 @@ function fit(pipeline::Pipeline, reader::BlockReader)
 
     _operators_mapping = [
         [
-            get(_feat_dict, f, nothing)
+            Base.get(_feat_dict, f, nothing)
             for f in _map_features(
                 isa(operator.features, AbstractVector) ? operator.features : [operator.features],
                 reader.feature_idxs_map
@@ -48,8 +48,8 @@ function fit(pipeline::Pipeline, reader::BlockReader)
 
     offsets_bounds = [(offsets[i], offsets[i+1]) for i in 1:length(offsets)-1]
     push!(offsets_bounds, (offsets[end], -1))
-    
-    _partial_res = torcjulia.map(
+  
+    _partial_res = Torcalia.map(
         _partial_fit,
         offsets_bounds;
         chunksize = 1,
@@ -217,6 +217,6 @@ function _parse_ops(pipeline, reader)
 
 end
 
-print_stats(pipeline::Pipeline) = foreach(op -> (println("Operator: $(typeof(op))"); print_stats(op); println()), pipeline.operators)
+print_stats(pipeline::Pipeline) = foreach(op -> (println("\nOperator: $(typeof(op))"); print_stats(op)), pipeline.operators)
 
 _map_features(features::Vector{Symbol}, mapping::Dict{Symbol, Int}) = [mapping[f] for f in features if f in keys(mapping)]

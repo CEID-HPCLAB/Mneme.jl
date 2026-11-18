@@ -1,6 +1,6 @@
 module Mneme
 
-using torcjulia
+using Torcalia
 
 using DataFrames, CSV, Statistics
 

@@ -2,4 +2,4 @@
 *.py
 venv
 Manifest*
-torcjulia
+Torcalia.jl
