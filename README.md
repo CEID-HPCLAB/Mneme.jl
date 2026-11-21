@@ -6,7 +6,7 @@
 ![HPC](https://img.shields.io/badge/HPC-228B22?style=flat&logo=dna&logoColor=white)
 ![Data Preprocessing](https://img.shields.io/badge/Data%20Preprocessing-001594?style=flat&logo=dna&logoColor=white)
 
-**Mneme.jl** is a high-level parallel preprocessing framework for large-scale tabular data. Built on top of [Torcalia](https://github.com/CEID-HPCLAB/Torcalia.jl), Mneme.jl employs an MPI-based hybrid parallelism scheme inspired by the MapReduce paradigm, which combines MPI multiprocessing and Julia-native multithreading to efficiently support out-of-core preprocessing of tabular datasets on multi-node systems (clusters).
+**Mneme.jl** is a high-level parallel preprocessing framework for large-scale tabular data. Built on top of [Torcalia.jl](https://github.com/CEID-HPCLAB/Torcalia.jl), Mneme.jl employs an MPI-based hybrid parallelism scheme inspired by the MapReduce paradigm, which combines MPI multiprocessing and Julia-native multithreading to efficiently support out-of-core preprocessing of tabular datasets on multi-node systems (clusters).
 
 Mneme.jl can be considered as the Julia implementation of the [Mneme](https://github.com/CEID-HPCLAB/Mneme) Python library. The project is under active development, and some features of the original Python library are not yet supported.  
 
@@ -29,7 +29,7 @@ git clone https://github.com/CEID-HPCLAB/Mneme.jl.git
 cd Mneme.jl
 ```
 
-`Mneme.jl` is built on top of `Torcalia`. Therefore, make sure that the [Torcalia](https://github.com/CEID-HPCLAB/Torcalia.jl) repository is also cloned before proceeding:
+`Mneme.jl` is built on top of `Torcalia.jl`. Therefore, make sure that the [Torcalia](https://github.com/CEID-HPCLAB/Torcalia.jl) repository is also cloned before proceeding:
 ```bash
 git clone https://github.com/CEID-HPCLAB/Torcalia.jl.git
 ```
